@@ -1,0 +1,11 @@
+{
+  "name": "flight-tracker",
+  "version": "1.0.0",
+  "description": "Team Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "J Beswick, T Hand, J Fenn",
+  "license": "ISC"
+}
