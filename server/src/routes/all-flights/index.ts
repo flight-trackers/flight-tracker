@@ -65,9 +65,9 @@ const allFlights: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
 
     const data = resp.data;
     //const data = test
-    saveToMongo(transformFlightData(data))
-
-    return transformFlightData(data);
+    let transformedData = transformFlightData(data)
+    saveToMongo(transformedData)
+    return transformFlightData(transformedData);
   });
 };
 
