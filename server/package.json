@@ -20,7 +20,9 @@
     "axios": "^1.2.1",
     "fastify": "^4.0.0",
     "fastify-cli": "^5.5.1",
-    "fastify-plugin": "^4.0.0"
+    "fastify-plugin": "^4.0.0",
+    "generate-schema": "^2.6.0",
+    "mongoose": "^6.8.0"
   },
   "directories": {
     "test": "test"
