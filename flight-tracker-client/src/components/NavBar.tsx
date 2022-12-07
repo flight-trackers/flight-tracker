@@ -4,11 +4,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import "../components.css"
 
-function NavBar() {
+function NavBar(props:{
+    changeTheme:()=> void,
+    currTheme:boolean
+    }) {
     const [searchInput, setSearchInput] = useState<string>()
     const [username, setUsername] = useState<string>()
     const [password, setPassword] = useState<string>()
-    const [theme, setTheme] = useState<boolean>(true)
     const [loggedIn, setLoggedIn] = useState<boolean>(true)
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -20,10 +22,6 @@ function NavBar() {
 
     const menuClose = () => {
         setAnchorEl(null);
-    }
-
-    const updateTheme = () => {
-        setTheme(prev => !prev)
     }
 
     const loginUser = () => {
@@ -80,9 +78,9 @@ function NavBar() {
                             :
                                 <>
                                     <MenuItem sx={{ margin: '0 10px' }}>Settings</MenuItem>
-                                    <MenuItem onClick={updateTheme}
+                                    <MenuItem onClick={props.changeTheme}
                                             sx={{ margin: '0 10px' }}>
-                                        {theme ? 'Dark' : 'Light'}
+                                        {props.currTheme ? 'Dark' : 'Light'}
                                     </MenuItem>
                                     <MenuItem onClick={logoutUser}
                                                 sx={{ margin: '0 10px' }}>Log Out</MenuItem>
