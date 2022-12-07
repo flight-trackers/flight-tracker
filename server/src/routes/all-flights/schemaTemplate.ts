@@ -1,4 +1,9 @@
-const schemaTemplate = {
+import { apiData } from "src/interfaces/IapiData";
+
+
+//let testvar: test = ["4b1816", "SWR20CZ ", "Switzerland", 1670348457, 1670348457, 13.9198, 46.2198, 11285.22, false, 249.38, 131.15, 0, null, 11186.16, "3051", false, 0]
+
+const schemaTemplate: apiData = {
     time: 1012312, states: [
         ["4b1816", "SWR20CZ ", "Switzerland", 1670348457, 1670348457, 13.9198, 46.2198, 11285.22, false, 249.38, 131.15, 0, null, 11186.16, "3051", false, 0],
         ["ab1644", "UAL1587 ", "United States", 1670348456, 1670348456, -91.3317, 42.3573, 8229.6, false, 277.21, 65.67, 0, null, 8176.26, null, false, 0],
