@@ -1,0 +1,35 @@
+[33mcommit 950e7c7d7507d94902cce9b2f73b05647d37a242[m[33m ([m[1;36mHEAD -> [m[1;32mdevelopment[m[33m, [m[1;31morigin/development[m[33m)[m
+Author: J-Beswick <119590970+J-Beswick@users.noreply.github.com>
+Date:   Thu Dec 1 12:07:42 2022 +0000
+
+    Update package.json
+
+[33mcommit 5a20242d4139df246c39bd85f84521fe965da9f8[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: James <james.beswick@raytheon.co.uk>
+Date:   Thu Dec 1 12:02:55 2022 +0000
+
+    added server file to commit
+
+[33mcommit d80455556afaa3a98f04ba66c6e629408ad0b943[m
+Author: James <james.beswick@raytheon.co.uk>
+Date:   Thu Dec 1 12:01:40 2022 +0000
+
+    created server and client files with fastify and vite
+
+[33mcommit c32992738262d2f9d7dc287a5d0cbd2c3e670306[m[33m ([m[1;32mmain[m[33m)[m
+Author: James <james.beswick@raytheon.co.uk>
+Date:   Thu Dec 1 11:14:28 2022 +0000
+
+    changes
+
+[33mcommit 5ef3d5d97deb8584ab85e006c5c072da7c1ce562[m
+Author: James <james.beswick@raytheon.co.uk>
+Date:   Thu Dec 1 10:53:55 2022 +0000
+
+    initial commit
+
+[33mcommit 23ef319016af380058ea33644cd2248f504b193e[m
+Author: J-Beswick <119590970+J-Beswick@users.noreply.github.com>
+Date:   Thu Dec 1 10:55:27 2022 +0000
+
+    Initial commit

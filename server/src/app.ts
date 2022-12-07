@@ -1,6 +1,9 @@
 import { join } from 'path';
-import AutoLoad, {AutoloadPluginOptions} from '@fastify/autoload';
+import AutoLoad, { AutoloadPluginOptions } from '@fastify/autoload';
 import { FastifyPluginAsync } from 'fastify';
+
+var mongoose = require("mongoose");
+
 
 export type AppOptions = {
   // Place your custom options for app below here.
@@ -12,10 +15,15 @@ const options: AppOptions = {
 }
 
 const app: FastifyPluginAsync<AppOptions> = async (
-    fastify,
-    opts
+  fastify,
+  opts
 ): Promise<void> => {
   // Place here your custom code!
+
+  //Connect to the mongodb cloud server
+  mongoose.connect("mongodb+srv://flight-tracker:pass-tracker@cluster0.8kafrq7.mongodb.net/?retryWrites=true&w=majority")
+    .then((item: any) => { console.log("connected to db") })
+    .catch((err: any) => { console.log("err did not connect") });
 
   // Do not touch the following lines
 
