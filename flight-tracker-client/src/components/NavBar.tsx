@@ -55,7 +55,7 @@ function NavBar() {
                                     horizontal: 'left'
                                 }}>
                             {loggedIn ? 
-                                <>
+                                <div>
                                     <TextField size="small"
                                                 placeholder='Username'
                                                 sx={{ backgroundColor: 'white', 
@@ -76,9 +76,9 @@ function NavBar() {
                                                 onChange={e => setPassword(e.target.value)} />
                                     <MenuItem onClick={loginUser}
                                                 sx={{ margin: '0 10px' }}>Log In</MenuItem>
-                                </>
+                                </div>
                             :
-                                <>
+                                <div>
                                     <MenuItem sx={{ margin: '0 10px' }}>Settings</MenuItem>
                                     <MenuItem onClick={updateTheme}
                                             sx={{ margin: '0 10px' }}>
@@ -86,7 +86,7 @@ function NavBar() {
                                     </MenuItem>
                                     <MenuItem onClick={logoutUser}
                                                 sx={{ margin: '0 10px' }}>Log Out</MenuItem>
-                                </>
+                                </div>
                             }
 
                         </Menu>
