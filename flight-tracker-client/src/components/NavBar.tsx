@@ -5,8 +5,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import "../components.css"
 
 function NavBar(props:{
-    changeTheme:()=> void,
-    currTheme:boolean
+    changeTheme:()  => void,
+        currTheme:boolean
     }) {
     const [searchInput, setSearchInput] = useState<string>()
     const [username, setUsername] = useState<string>()
