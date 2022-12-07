@@ -16,9 +16,7 @@ function App() {
   return (
     <ThemeProvider theme={themes}>
       <CssBaseline/>
-      <div>
-        <NavBar changeTheme={updateTheme} currTheme={theme}/>
-      </div>
+      <NavBar changeTheme={updateTheme} currTheme={theme}/>
     </ThemeProvider>
   )
 }
