@@ -1,5 +1,6 @@
 import axios from "axios";
 import { FastifyPluginAsync } from "fastify";
+import { IflightData } from "src/interfaces/IflightData";
 
 const allFlights: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   const options = {
@@ -11,7 +12,7 @@ const allFlights: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.get("/", async function (request, reply) {
     const resp = await axios.get("https://opensky-network.org/api/states/all", options);
 
-    const data = resp.data;
+    const data:IflightData = resp.data;
 
     return data;
   });

@@ -1,4 +1,4 @@
-export interface state {
+interface state {
     icao24: string,
     callsign:string,
     origin_country:string,
@@ -19,7 +19,9 @@ export interface state {
     category?: number
 }
 
-export interface IflightData {
+interface IflightData {
     time: string,
     states: state[]
 }
+
+export { IflightData, state}
