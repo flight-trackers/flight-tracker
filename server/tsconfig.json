@@ -6,5 +6,4 @@
     "baseUrl": "."
   },
   "include": ["src/**/*.ts"],
-  
 }
