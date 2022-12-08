@@ -1,4 +1,4 @@
-import { IFlightData } from 'src/interfaces/IflightData';
+import { IFlightData, IOpenSkyRawData } from 'src/interfaces/IflightData';
 import { IState } from 'src/interfaces/IflightData';
 import axios from "axios";
 import { FastifyPluginAsync } from "fastify";
@@ -17,7 +17,7 @@ const allFlights: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     );
 
 
-    const mapData:IState[] = resp.data.states.map((flight:any[]) => {
+    const mapData:IState[] = resp.data.states.map((flight:IOpenSkyRawData[]) => {
       return ({
         icao24: flight[0],
         callsign: flight[1],
