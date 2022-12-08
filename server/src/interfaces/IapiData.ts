@@ -1,25 +1,27 @@
-export interface stateData {
+type Nullable<T> = T | null
+
+export interface IstateData {
     [0]: string;
     [1]: string;
     [2]: string;
-    [3]: number | null;
-    [4]: number | null;
-    [5]: number | null;
-    [6]: number | null;
-    [7]: number | null;
-    [8]: boolean | null;
-    [9]: number | null;
-    [10]: number | null;
-    [11]: number | null;
-    [12]: number[] | null;
-    [13]: number | null;
-    [14]: string | null;
-    [15]: boolean | null;
-    [16]: number | null;
-    [17]?: number | null;
+    [3]: Nullable<number>;
+    [4]: Nullable<number>;
+    [5]: Nullable<number>;
+    [6]: Nullable<number>;
+    [7]: Nullable<number>;
+    [8]: boolean;
+    [9]: Nullable<number>;
+    [10]: Nullable<number>;
+    [11]: Nullable<number>;
+    [12]: Nullable<number[]>;
+    [13]: Nullable<number>;
+    [14]: Nullable<string>;
+    [15]: boolean;
+    [16]: Nullable<number>;
+    [17]?: Nullable<number>;
 }
 
-export interface apiData {
+export interface IApiData {
     time: number,
-    states: stateData[]
+    states: IstateData[]
 }

@@ -1,34 +1,20 @@
 import axios from "axios";
 import { FastifyPluginAsync } from "fastify";
 import { IFlightData, IState } from "src/interfaces/IflightData";
-import { apiData, stateData } from "src/interfaces/IapiData";
+import { IApiData, IstateData } from "src/interfaces/IApiData";
 //import { Transform } from "stream";
 
 //imports flights; the schema for the database colection
-import { flights } from './schemaTemplate'
 
-
-
-//this saves the flight data to our mongodb server
-const saveToMongo = (flightData: IFlightData) => {
-
-
-  var myData = new flights(flightData);
-  myData.save().then(() => {
-    console.log("saved to database")
-  })
-    .catch((err: string) => { throw err });
-
-}
 
 //converts json data from the Open Skies API into our format
-const transformFlightData = (flightData: apiData): IFlightData => {
+const transformFlightData = (flightData: IApiData): IFlightData => {
   let newFlightData: IFlightData = {
     time: flightData.time.toString(),
     states: []
   }
 
-  flightData.states.map((state: stateData) => {
+  flightData.states.map((state: IstateData) => {
     let tempState: IState = {
       icao24: state[0],
       callsign: state[1],
@@ -58,21 +44,19 @@ const transformFlightData = (flightData: apiData): IFlightData => {
 
 
 const allFlights: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-  // const options = {
-  //   auth: {
-  //     username: process.env.USERNAME as string,
-  //     password: process.env.PASSWORD as string,
-  //   },
-  // };
+  const options = {
+    auth: {
+      username: process.env.USERNAME as string,
+      password: process.env.PASSWORD as string,
+    },
+  };
   fastify.get("/", async function (request, reply) {
     const resp = await axios.get(
       "https://opensky-network.org/api/states/all",
-      //options
+      options
     );
     console.log("asdflkjsaldkjflsdkjflsjd CALLED")
     const data: IFlightData = transformFlightData(resp.data);
-    //const data: IFlightData = transformFlightData(schemaTemplate)
-    saveToMongo(data)
 
     return data;
   });
