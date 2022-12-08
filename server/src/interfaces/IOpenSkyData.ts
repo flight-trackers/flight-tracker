@@ -24,25 +24,27 @@ interface IFlightData {
   states: IState[];
 }
 
+type Nullable<T> = T | null;
+
 interface IOpenSkyRawData {
   [0]: string;
   [1]: string;
   [2]: string;
   [3]: number;
   [4]: number;
-  [5]?: number;
-  [6]?: number;
-  [7]?: number;
+  [5]: Nullable<number>;
+  [6]: Nullable<number>;
+  [7]: Nullable<number>;
   [8]: boolean;
-  [9]?: number;
-  [10]?: number;
-  [11]?: number;
+  [9]: Nullable<number>;
+  [10]: Nullable<number>;
+  [11]: Nullable<number>;
   [12]: number[];
-  [13]?: number;
-  [14]?: string;
+  [13]: Nullable<number>;
+  [14]: Nullable<string>;
   [15]: boolean;
   [16]: number;
-  [17]?: number;
+  [17]: Nullable<number>;
 }
 
 export { IFlightData, IState, IOpenSkyRawData };
