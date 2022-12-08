@@ -68,5 +68,3 @@ dist
 .env
 
 
-#packages
-package-lock.json
