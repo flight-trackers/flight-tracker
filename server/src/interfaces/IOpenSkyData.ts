@@ -20,7 +20,7 @@ interface IState {
 }
 
 interface IFlightData {
-  time: string;
+  time: number;
   states: IState[];
 }
 
