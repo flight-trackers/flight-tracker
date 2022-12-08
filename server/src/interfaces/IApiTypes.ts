@@ -1,6 +1,6 @@
 type Nullable<T> = T | null
 
-export interface IstateData {
+export interface IStateData {
     [0]: string;
     [1]: string;
     [2]: string;
@@ -23,5 +23,5 @@ export interface IstateData {
 
 export interface IApiData {
     time: number,
-    states: IstateData[]
+    states: IStateData[]
 }

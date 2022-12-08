@@ -1,7 +1,7 @@
 import axios from "axios";
 import { FastifyPluginAsync } from "fastify";
 import { IFlightData, IState } from "src/interfaces/IflightData";
-import { IApiData, IstateData } from "src/interfaces/IApiData";
+import { IApiData, IStateData } from "src/interfaces/IApiTypes";
 //import { Transform } from "stream";
 
 //imports flights; the schema for the database colection
@@ -14,7 +14,7 @@ const transformFlightData = (flightData: IApiData): IFlightData => {
     states: []
   }
 
-  flightData.states.map((state: IstateData) => {
+  flightData.states.map((state: IStateData) => {
     let tempState: IState = {
       icao24: state[0],
       callsign: state[1],
@@ -44,16 +44,16 @@ const transformFlightData = (flightData: IApiData): IFlightData => {
 
 
 const allFlights: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-  const options = {
-    auth: {
-      username: process.env.USERNAME as string,
-      password: process.env.PASSWORD as string,
-    },
-  };
+  // const options = {
+  //   auth: {
+  //     username: process.env.USERNAME as string,
+  //     password: process.env.PASSWORD as string,
+  //   },
+  // };
   fastify.get("/", async function (request, reply) {
     const resp = await axios.get(
       "https://opensky-network.org/api/states/all",
-      options
+      // options
     );
     console.log("asdflkjsaldkjflsdkjflsjd CALLED")
     const data: IFlightData = transformFlightData(resp.data);
