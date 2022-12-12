@@ -16,9 +16,9 @@ import "../components.css";
 import { ColourModeContext } from "../App";
 
 function NavBar() {
-  const [searchInput, setSearchInput] = useState<string>();
-  const [username, setUsername] = useState<string>();
-  const [password, setPassword] = useState<string>();
+  const [searchInput, setSearchInput] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [loggedIn, setLoggedIn] = useState<boolean>(true);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
