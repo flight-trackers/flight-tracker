@@ -1,23 +1,36 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import { useState } from "react";
+import { useState, createContext, useMemo } from "react";
 import NavBar from "./components/NavBar";
 
+export const ColourModeContext = createContext({ toggleColourMode: () => {} });
+
 function App() {
-  const [theme, setTheme] = useState<boolean>(true);
-  const updateTheme = () => {
-    setTheme((prev) => !prev);
-  };
-  let themes = createTheme({
-    palette: {
-      mode: theme ? "light" : "dark",
-    },
-  });
+  const [mode, setMode] = useState<"light" | "dark">("light");
+  const colourMode = useMemo(
+    () => ({
+      toggleColourMode: () => {
+        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+      },
+    }),
+    []
+  );
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode]
+  );
 
   return (
-    <ThemeProvider theme={themes}>
-      <CssBaseline />
-      <NavBar changeTheme={updateTheme} currTheme={theme} />
-    </ThemeProvider>
+    <ColourModeContext.Provider value={colourMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <NavBar />
+      </ThemeProvider>
+    </ColourModeContext.Provider>
   );
 }
 
