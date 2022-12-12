@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext, MouseEvent } from "react";
 import {
   Box,
   AppBar,
@@ -20,14 +20,14 @@ function NavBar() {
   const [username, setUsername] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [loggedIn, setLoggedIn] = useState<boolean>(true);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const theme = useTheme();
   const colourMode = useContext(ColourModeContext);
 
   const open = Boolean(anchorEl);
 
-  const menuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const menuOpen = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
