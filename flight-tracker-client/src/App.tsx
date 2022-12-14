@@ -30,7 +30,7 @@ function App() {
     <ColourModeContext.Provider value={colourMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <NavBar user={user} />
+        <NavBar user={user.id} />
       </ThemeProvider>
     </ColourModeContext.Provider>
   );

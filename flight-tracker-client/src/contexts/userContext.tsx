@@ -1,9 +1,5 @@
 import React, {createContext, useEffect, useState} from 'react'
 
-interface props {
-
-}
-
 interface IState {
     id: string;
     loaded: boolean;
@@ -12,8 +8,8 @@ interface IState {
 
 export const UserContext = createContext({
     user: { id: "", loaded: false, empty: false },
-    setUser: { id: "", loaded: false, empty: false },
-    removeUser: () => undefined
+    updateUser: (user: IState) => {},
+    removeUser: () => {}
 })
 
 const UserContextProvider = (props: any) => {
@@ -24,11 +20,11 @@ const UserContextProvider = (props: any) => {
     });
 
     useEffect(() => {
-        const localData = localStorage.getItem('user');
+        const localData: string | null = localStorage.getItem('user');
         
-        if (localData) {
+        if (typeof localData === "string") {
             setUser({
-                id: localData,
+                id: JSON.parse(localData),
                 loaded: true,
                 empty: false
             })
@@ -41,16 +37,20 @@ const UserContextProvider = (props: any) => {
         }
     }, [])
 
+    const updateUser = (user: IState) => {
+        setUser(user)
+    }
+
     const removeUser = () => {
         localStorage.removeItem('user')
     }
 
     useEffect(() => {
-        localStorage.setItem('user', JSON.stringify(user));
-    }, [user])
+        localStorage.setItem('user', JSON.stringify(user.id));
+    }, [user.id])
 
     return (
-        <UserContext.Provider value={{user, setUser, removeUser}}>
+        <UserContext.Provider value={{user, updateUser, removeUser}}>
             {props.children}
         </UserContext.Provider>
     )
