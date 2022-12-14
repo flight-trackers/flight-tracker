@@ -10,11 +10,14 @@ interface IState {
     empty: boolean;
 }
 
-export const UserContext = createContext({});
+export const UserContext = createContext({
+    user: { id: "", loaded: false, empty: false },
+    setUser: { id: "", loaded: false, empty: false },
+    removeUser: () => undefined
+})
 
 const UserContextProvider = (props: any) => {
-    console.log(props)
-    const [user, setUser] = useState({
+    const [user, setUser] = useState<IState>({
         id: "",
         loaded: false,
         empty: false
@@ -38,10 +41,6 @@ const UserContextProvider = (props: any) => {
         }
     }, [])
 
-    const changeUser = (user: IState) => {
-        setUser(user);
-    }
-
     const removeUser = () => {
         localStorage.removeItem('user')
     }
@@ -51,7 +50,7 @@ const UserContextProvider = (props: any) => {
     }, [user])
 
     return (
-        <UserContext.Provider value={{user, changeUser, removeUser}}>
+        <UserContext.Provider value={{user, setUser, removeUser}}>
             {props.children}
         </UserContext.Provider>
     )
