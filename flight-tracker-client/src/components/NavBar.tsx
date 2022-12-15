@@ -41,14 +41,16 @@ const NavBar: React.FC<props> = ({user}) => {
   };
 
   const loginUser = () => {
-    updateUser({
-      id: username,
-      loaded: true,
-      empty: false
-    })
-    setUsername("")
-    setPassword("")
-    setLoggedIn((prev) => !prev);
+    if (username !== "" && password !== "") {
+      updateUser({
+        id: username,
+        loaded: true,
+        empty: false
+      })
+      setUsername("")
+      setPassword("")
+      setLoggedIn((prev) => !prev);
+    }
   };
 
   const logoutUser = () => {

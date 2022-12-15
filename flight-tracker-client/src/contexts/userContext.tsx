@@ -16,13 +16,13 @@ const UserContextProvider = (props: any) => {
     const [user, setUser] = useState<IState>({
         id: "",
         loaded: false,
-        empty: false
+        empty: false    
     });
 
     useEffect(() => {
         const localData: string | null = localStorage.getItem('user');
         
-        if (typeof localData === "string") {
+        if (localData || typeof localData === "string") {
             setUser({
                 id: JSON.parse(localData),
                 loaded: true,
@@ -42,11 +42,16 @@ const UserContextProvider = (props: any) => {
     }
 
     const removeUser = () => {
+        setUser({
+            id: "",
+            loaded: false,
+            empty: false    
+        });
         localStorage.removeItem('user')
     }
 
     useEffect(() => {
-        localStorage.setItem('user', JSON.stringify(user.id));
+        user.id !== "" && localStorage.setItem('user', JSON.stringify(user.id));
     }, [user.id])
 
     return (
