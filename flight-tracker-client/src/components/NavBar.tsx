@@ -15,11 +15,11 @@ import "../components.css";
 import { ColourModeContext } from "../App";
 import { UserContext } from "../contexts/userContext";
 
-interface props{
+interface INavBarProps{
   user: string;
 }
 
-const NavBar: React.FC<props> = ({user}) => {
+const NavBar: React.FC<INavBarProps> = ({user}) => {
   const [searchInput, setSearchInput] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -126,8 +126,8 @@ const NavBar: React.FC<props> = ({user}) => {
                 </div>
               )}
             </Menu>
-            <p className="toolbar-user">{user !== "" && user}</p>
-            {user !== "" &&
+            <p className="toolbar-user">{user}</p>
+            {user &&
               <img
                 src="https://via.placeholder.com/50"
                 className="toolbar-avatar"

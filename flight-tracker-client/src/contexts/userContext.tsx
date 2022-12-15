@@ -1,6 +1,6 @@
 import React, {createContext, useEffect, useState} from 'react'
 
-interface IState {
+interface IUser {
     id: string;
     loaded: boolean;
     empty: boolean;
@@ -8,12 +8,12 @@ interface IState {
 
 export const UserContext = createContext({
     user: { id: "", loaded: false, empty: false },
-    updateUser: (user: IState) => {},
+    updateUser: (user: IUser) => {},
     removeUser: () => {}
 })
 
 const UserContextProvider = (props: any) => {
-    const [user, setUser] = useState<IState>({
+    const [user, setUser] = useState<IUser>({
         id: "",
         loaded: false,
         empty: false    
@@ -37,7 +37,7 @@ const UserContextProvider = (props: any) => {
         }
     }, [])
 
-    const updateUser = (user: IState) => {
+    const updateUser = (user: IUser) => {
         setUser(user)
     }
 
