@@ -1,6 +1,7 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import { useState, createContext, useMemo } from "react";
+import { useState, createContext, useMemo, useContext } from "react";
 import NavBar from "./components/NavBar";
+import { UserContext } from "./contexts/userContext";
 
 export const ColourModeContext = createContext({ toggleColourMode: () => {} });
 
@@ -23,12 +24,13 @@ function App() {
       }),
     [mode]
   );
+  const { user } = useContext(UserContext);
 
   return (
     <ColourModeContext.Provider value={colourMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <NavBar />
+        <NavBar user={user.id} />
       </ThemeProvider>
     </ColourModeContext.Provider>
   );

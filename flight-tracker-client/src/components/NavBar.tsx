@@ -5,7 +5,6 @@ import {
   Toolbar,
   TextField,
   IconButton,
-  Button,
   Menu,
   MenuItem,
   useTheme,
@@ -14,13 +13,19 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import "../components.css";
 import { ColourModeContext } from "../App";
+import { UserContext } from "../contexts/userContext";
 
-function NavBar() {
+interface INavBarProps{
+  user: string;
+}
+
+const NavBar: React.FC<INavBarProps> = ({user}) => {
   const [searchInput, setSearchInput] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loggedIn, setLoggedIn] = useState<boolean>(true);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { updateUser, removeUser } = useContext(UserContext);
 
   const theme = useTheme();
   const colourMode = useContext(ColourModeContext);
@@ -36,10 +41,22 @@ function NavBar() {
   };
 
   const loginUser = () => {
-    setLoggedIn((prev) => !prev);
+    if (username !== "" && password !== "") {
+      updateUser({
+        id: username,
+        loaded: true,
+        empty: false
+      })
+      setUsername("")
+      setPassword("")
+      setLoggedIn((prev) => !prev);
+    }
   };
 
   const logoutUser = () => {
+    removeUser()
+    setUsername("")
+    setPassword("")
     setLoggedIn((prev) => !prev);
   };
 
@@ -109,11 +126,13 @@ function NavBar() {
                 </div>
               )}
             </Menu>
-            <p className="toolbar-user">Username</p>
-            <img
-              src="https://via.placeholder.com/50"
-              className="toolbar-avatar"
-            />
+            <p className="toolbar-user">{user}</p>
+            {user &&
+              <img
+                src="https://via.placeholder.com/50"
+                className="toolbar-avatar"
+              />
+            }
           </div>
           <div className="toolbar-right">
             <TextField
