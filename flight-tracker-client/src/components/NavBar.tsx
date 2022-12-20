@@ -17,20 +17,26 @@ import { UserContext } from "../contexts/userContext";
 
 interface INavBarProps{
   user: string;
+  setOpenSettings: (openSettings: boolean) => void;
 }
 
-const NavBar: React.FC<INavBarProps> = ({user}) => {
+const NavBar: React.FC<INavBarProps> = ({user, setOpenSettings}) => {
   const [searchInput, setSearchInput] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [loggedIn, setLoggedIn] = useState<boolean>(true);
+  const [loggedIn, setLoggedIn] = useState<boolean>(user ? true : false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { updateUser, removeUser } = useContext(UserContext);
+
+  const handleOpenSettings = () => {
+    menuClose()
+    setOpenSettings(true)
+  };
 
   const theme = useTheme();
   const colourMode = useContext(ColourModeContext);
 
-  const open = Boolean(anchorEl);
+  const openMenu = Boolean(anchorEl);
 
   const menuOpen = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -42,6 +48,7 @@ const NavBar: React.FC<INavBarProps> = ({user}) => {
 
   const loginUser = () => {
     if (username !== "" && password !== "") {
+      menuClose()
       updateUser({
         id: username,
         loaded: true,
@@ -54,6 +61,7 @@ const NavBar: React.FC<INavBarProps> = ({user}) => {
   };
 
   const logoutUser = () => {
+    menuClose()
     removeUser()
     setUsername("")
     setPassword("")
@@ -70,7 +78,7 @@ const NavBar: React.FC<INavBarProps> = ({user}) => {
             </IconButton>
             <Menu
               anchorEl={anchorEl}
-              open={open}
+              open={openMenu}
               onClose={menuClose}
               anchorOrigin={{
                 vertical: "top",
@@ -113,7 +121,8 @@ const NavBar: React.FC<INavBarProps> = ({user}) => {
                 </div>
               ) : (
                 <div>
-                  <MenuItem sx={{ margin: "0 10px" }}>Settings</MenuItem>
+                  <MenuItem sx={{ margin: "0 10px" }}
+                            onClick={handleOpenSettings}>Settings</MenuItem>
                   <MenuItem
                     onClick={colourMode.toggleColourMode}
                     sx={{ margin: "0 10px" }}
